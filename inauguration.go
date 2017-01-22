@@ -84,7 +84,7 @@ func getFrequencies(words []string) FreqList {
 	for k, v := range m {
 		result = append(result, Freq{k, float64(v) / float64(n)})
 	}
-	sort.Sort(result)
+	sort.Sort(sort.Reverse(result))
 
 	return result
 }
@@ -132,10 +132,10 @@ func main() {
 		s.TFIDF = t
 		fmt.Printf("Speech: %s; Words: %d\nTFIDF:\n", s.Name, s.NumWords)
 		for i, temp := range s.TFIDF {
-			if i > 10 {
+			if i >= 10 {
 				break
 			}
-			fmt.Printf("\t%s: %f\n", temp.Key, temp.Val)
+			fmt.Printf("\t%d. %s: %f\n", i+1, temp.Key, temp.Val)
 		}
 		fmt.Println()
 	}
